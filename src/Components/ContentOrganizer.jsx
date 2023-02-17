@@ -2,24 +2,7 @@ import { Stack, Typography } from "@mui/material"
 import { Box } from "@mui/system"
 import ContentCard from "./ContentCard"
 
-function ContentOrganizer({data, quantityPerPage}){
-  //imageUrl, albumName, artistName, Price
-  let songsArray = [];
-  let moviesArray = [];
-  data.forEach(element => {
-    let content = {
-      'ImageUrl':element.artworkUrl100,
-      'AlbumName':element.collectionName,
-      'ArtistName':element.artistName,
-      'Price':element.collectionPrice
-    }
-    if(element.kind === 'feature-movie'){
-      moviesArray.push(content)
-    }
-    if(element.kind === 'song'){
-      songsArray.push(content)
-    }
-  });
+function ContentOrganizer({songsArray = [], moviesArray = []}){
   return <Box>
     <form>
       <Typography gutterBottom variant='h4' component='div'>
@@ -31,7 +14,7 @@ function ContentOrganizer({data, quantityPerPage}){
             imageUrl={movie.ImageUrl}
             albumName = {movie.AlbumName}
             artistName = {movie.ArtistName}
-            Price = {movie.Price}
+            Price = {movie.Price + ' $'}
           />
         })}
       </Stack>
@@ -46,7 +29,8 @@ function ContentOrganizer({data, quantityPerPage}){
             imageUrl={song.ImageUrl}
             albumName = {song.AlbumName}
             artistName = {song.ArtistName}
-            Price = {song.Price}
+            Price = {song.Price + ' $'}
+            isAlbum = {false}
           />
         })}
       </Stack>
