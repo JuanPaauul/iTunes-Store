@@ -10,7 +10,7 @@ function ContentCard({imageUrl, albumName, artistName, Price, isAlbum}){
         image={imageUrl}
         alt={albumName + ' artwork'}
       />
-      <CardContent>
+      <CardContent maxWidth='150'>
         <Typography gutterBottom variant='h6' component='div'>
           {albumName}
         </Typography>

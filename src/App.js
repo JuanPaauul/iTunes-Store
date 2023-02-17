@@ -1,15 +1,27 @@
 import ContentCard from "./Components/ContentCard";
+import ContentOrganizer from "./Components/ContentOrganizer";
+import axios from 'axios';
+import { useEffect, useState } from "react";
 
 function App() {
-  
+  const[iTunesData, setiTunesData] = useState([])
+
+  const fetchData = async(url) => {
+    try{
+      const response = await axios.get(url)
+      console.log(response)
+      setiTunesData(response.data.results)
+    }catch(error){
+      console.log(error)
+    }
+  }
+  useEffect(()=>{
+    fetchData('https://itunes.apple.com/search?term=jack+johnson')
+  },[])
   return (
     <>
-      <ContentCard
-        imageUrl = 'https://is4-ssl.mzstatic.com/image/thumb/Music124/v4/f3/ee/b3/f3eeb3ff-ca32-273a-15aa-709bdfa64367/mzi.izwiyqez.jpg/100x100bb.jpg'
-        albumName = 'Three Way Tie for a Fifth'
-        artistName = 'This Bike Is a Pipe Bomb'
-        Price='9.99$' 
-        isAlbum='true'
+      <ContentOrganizer
+        data={iTunesData}
       />
     </>
   );
