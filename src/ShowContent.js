@@ -1,5 +1,6 @@
 import ContentOrganizer from "./Components/ContentOrganizer";
 import { useEffect, useState } from "react";
+import { Box } from "@mui/system"
 
 function fetchData(url, setiTunesData){
   fetch(url).then(response => response.json())
@@ -51,6 +52,7 @@ function ShowContent() {
 
   return (
     <>
+      <Box height='70px'></Box>
       <ContentOrganizer
         songsArray = {songsArray}
         moviesArray = {moviesArray}

@@ -19,6 +19,7 @@ function ContentOrganizer({songsArray = [], moviesArray = []}){
         })}
       </Stack>
     </form>
+    <Box height='20px'></Box>
     <form>
       <Typography gutterBottom variant='h4' component='div'>
         Songs

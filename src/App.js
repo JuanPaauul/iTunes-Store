@@ -1,7 +1,11 @@
 import ShowContent from "./ShowContent";
+import SearchBar from "./SearchBar";
 
 function App() {
-  return <ShowContent></ShowContent>
+  return <>
+      <SearchBar></SearchBar>
+      <ShowContent></ShowContent>
+    </>
 }
 
 export default App;
