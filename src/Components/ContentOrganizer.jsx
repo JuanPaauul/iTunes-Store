@@ -6,7 +6,7 @@ function ContentOrganizer({songsArray = [], moviesArray = []}){
   return <Box sx={{padding:'150px'}}>
     <form>
       <Typography gutterBottom variant='h4' component='div'>
-        Songs
+        Albums
       </Typography>
       <Stack direction = 'row' spacing={2}>
         {songsArray.map((song) => {

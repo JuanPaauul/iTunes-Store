@@ -1,5 +1,6 @@
 import ContentOrganizer from "./Components/ContentOrganizer";
 import { Box } from "@mui/system";
+import { Typography } from "@mui/material";
 
 function formatString(theString, maxLength){
     if(theString === undefined){
@@ -47,8 +48,13 @@ function ShowContent(iTunesData) {
   let moviesArray = []
   let songsArray = []
   console.log(iTunesData.iTunesData)
-  if(iTunesData.iTunesData.length > 0){
-    let res = sortDataByKind(iTunesData.iTunesData);
+  if(iTunesData.iTunesData.length <= 0){
+  return <>
+    <Box height='70px'></Box>
+    <Typography variant='h2'>No album found :( try again</Typography>
+  </>
+  }
+  let res = sortDataByKind(iTunesData.iTunesData);
     moviesArray = res[0];
     songsArray = res[1];
     let albumsArray = sortByAlbum(songsArray)
@@ -60,7 +66,6 @@ function ShowContent(iTunesData) {
         />
       </>
     );
-    }
 }
 
 export default ShowContent;
