@@ -51,7 +51,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function Header() {
+export default function Header({changeHandler}) {
   return (
     <Box>
       <AppBar>
@@ -72,6 +72,7 @@ export default function Header() {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
+              onChange={changeHandler}
             />
           </Search>
         </Toolbar>

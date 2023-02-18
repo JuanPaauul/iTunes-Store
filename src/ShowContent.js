@@ -1,14 +1,6 @@
 import ContentOrganizer from "./Components/ContentOrganizer";
-import { useEffect, useState } from "react";
-import { Box } from "@mui/system"
+import { Box } from "@mui/system";
 
-function fetchData(url, setiTunesData){
-  fetch(url).then(response => response.json())
-  .then(data => {
-    setiTunesData(data.results)
-  })
-  .catch(error => console.log(error))
-}
 function formatString(theString, maxLength){
     if(theString === undefined){
       theString = '-----';
@@ -37,29 +29,26 @@ function sortDataByKind(data){
   return [moviesArray, songsArray];
 }
 
-function ShowContent() {
-  const[iTunesData, setiTunesData] = useState([])
+function ShowContent(iTunesData) {
   let moviesArray = []
   let songsArray = []
+  console.log(iTunesData.iTunesData)
+  if(iTunesData.iTunesData.length > 0){
+    let res = sortDataByKind(iTunesData.iTunesData);
+    moviesArray = res[0];
+    songsArray = res[1];
 
-  useEffect(()=>{
-    fetchData('https://itunes.apple.com/search?term=jack+johnson', setiTunesData)
-  },[])
-
-  let res = sortDataByKind(iTunesData);
-  moviesArray = res[0];
-  songsArray = res[1];
-
-  return (
-    <>
-      <Box height='70px'></Box>
-      <ContentOrganizer
-        songsArray = {songsArray}
-        moviesArray = {moviesArray}
-      />
-    </>
-  );
+    return (
+      <>
+        <Box height='70px'></Box>
+        <ContentOrganizer
+          songsArray = {songsArray}
+          moviesArray = {moviesArray}
+        />
+      </>
+    );
+    }
 }
 
 export default ShowContent;
-export {fetchData, formatString, sortDataByKind};
+export {formatString, sortDataByKind};
