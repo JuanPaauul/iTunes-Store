@@ -14,7 +14,8 @@ function sortDataByKind(data){
   let songsArray = []
   data.forEach(element => {
     let content = {
-      'ImageUrl':element.artworkUrl100,
+      'ImageUrl':element.artworkUrl100??'https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/ITunes_logo.svg/1200px-ITunes_logo.svg.png',
+      'AlbumId':element.collectionId,
       'AlbumName':formatString(element.collectionName, 9),
       'ArtistName':formatString(element.artistName, 30),
       'Price':element.collectionPrice
@@ -29,6 +30,19 @@ function sortDataByKind(data){
   return [moviesArray, songsArray];
 }
 
+function sortByAlbum(songsArray){
+  let albums=[]
+  let ids={}
+  songsArray.forEach(song =>{
+    console.log(ids[song.AlbumId])
+    if(!ids[song.AlbumId]){
+      albums.push(song)
+      ids[song.AlbumId] = true;
+    }
+  });
+  return albums;
+}
+
 function ShowContent(iTunesData) {
   let moviesArray = []
   let songsArray = []
@@ -37,13 +51,12 @@ function ShowContent(iTunesData) {
     let res = sortDataByKind(iTunesData.iTunesData);
     moviesArray = res[0];
     songsArray = res[1];
-
+    let albumsArray = sortByAlbum(songsArray)
     return (
       <>
         <Box height='70px'></Box>
         <ContentOrganizer
-          songsArray = {songsArray}
-          moviesArray = {moviesArray}
+          songsArray = {albumsArray.slice(0,7)}
         />
       </>
     );

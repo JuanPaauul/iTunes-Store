@@ -23,7 +23,7 @@ function SearchBar({iTunesData, setiTunesData}){
       let timeNow = Date.now() - startTime;
       startTime = Date.now();
       if(timeNow>1000){
-        fetchData(`https://itunes.apple.com/search?term=${e.target.value}`, setiTunesData)
+        fetchData(`https://itunes.apple.com/search?term=${e.target.value}&entity=song`, setiTunesData)
       }
     }
   }

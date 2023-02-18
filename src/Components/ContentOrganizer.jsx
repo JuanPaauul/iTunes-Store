@@ -3,23 +3,7 @@ import { Box } from "@mui/system"
 import ContentCard from "./ContentCard"
 
 function ContentOrganizer({songsArray = [], moviesArray = []}){
-  return <Box>
-    <form>
-      <Typography gutterBottom variant='h4' component='div'>
-        Feature Movie
-      </Typography>
-      <Stack direction = 'row' spacing={2}>
-        {moviesArray.map((movie) => {
-          return <ContentCard
-            imageUrl={movie.ImageUrl}
-            albumName = {movie.AlbumName}
-            artistName = {movie.ArtistName}
-            Price = {movie.Price + ' $'}
-          />
-        })}
-      </Stack>
-    </form>
-    <Box height='20px'></Box>
+  return <Box sx={{padding:'150px'}}>
     <form>
       <Typography gutterBottom variant='h4' component='div'>
         Songs
@@ -34,6 +18,19 @@ function ContentOrganizer({songsArray = [], moviesArray = []}){
             isAlbum = {false}
           />
         })}
+        <Stack direction='column'>
+          {songsArray.length >= 7?
+          <img
+            alt="See more"
+            src="https://static.thenounproject.com/png/2623476-200.png"
+            width="200px"
+            height="200px"
+          />:null
+          }
+          <Typography gutterBottom variant="h6">
+            See more
+          </Typography>
+        </Stack>
       </Stack>
     </form>
   </Box>
